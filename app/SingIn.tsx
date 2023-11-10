@@ -1,24 +1,17 @@
-import {
-  View,
-  Text,
-  Image,
-  SafeAreaView,
-  StyleSheet,
-  TouchableOpacity,
-} from "react-native";
+import { View, Image, StyleSheet, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import Input from "../src/components/Login/Input";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import IconLogin from "../src/components/Login/IconLogin";
 
 export default function SingIn() {
-  const [route, setRoute] = useState("");
+  const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const handleValidar = () => {
     if (username === "teste" && password === "123") {
-      setRoute("/MainScreen");
+      router.replace("/MainScreen");
     } else {
       alert("usuario e/ou senha incorreto(s)!");
       console.log("usuario e/ou senha incorreto(s)!");
@@ -27,37 +20,48 @@ export default function SingIn() {
 
   return (
     <View style={styles.container}>
-      <Image
-        source={require("../assets/images/logo.png")}
-        style={{ width: 200, height: 200 }}
-      />
-      <Input
-        setCharacters={setUsername}
-        characters={username}
-        placeholder={"username"}
-      />
-      <Input
-        setCharacters={setPassword}
-        characters={password}
-        secure={true}
-        placeholder={"password"}
-      />
-      <TouchableOpacity onPress={handleValidar}>
-        <Link href={route}>
-          <IconLogin></IconLogin>
-        </Link>
-      </TouchableOpacity>
-      <Link href={route}></Link>
+      <Image source={require("../assets/images/3b.png")} style={styles.image} />
+      <View style={styles.input}>
+        <Input
+          setCharacters={setUsername}
+          characters={username}
+          placeholder={"username"}
+        />
+
+        <Input
+          setCharacters={setPassword}
+          characters={password}
+          secure={true}
+          placeholder={"password"}
+        />
+        <View style={styles.link}>
+          <IconLogin click={handleValidar}></IconLogin>
+        </View>
+      </View>
     </View>
   );
 }
 const styles = StyleSheet.create({
   container: {
-    position: "absolute",
-    width: 350,
-    height: 640,
-    backgroundColor: "#c7c7c7",
+    flex: 1,
+    flexDirection: "column",
+    backgroundColor: "#B0E0E6",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-evenly",
+  },
+
+  image: {
+    width: "80%",
+    height: "40%",
+  },
+
+  input: {
+    width: "64%",
+  },
+
+  link: {
+    marginTop: 16,
+
+    alignItems: "center",
   },
 });

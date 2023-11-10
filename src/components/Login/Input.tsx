@@ -27,11 +27,11 @@ export default function Input({
 }
 const styles = StyleSheet.create({
   input: {
-    width: 300,
-    margin: 8,
-    borderRadius: 8,
-    backgroundColor: "#B0C4DE",
+    margin: 2,
+
     alignItems: "center",
-    justifyContent: "center",
+
+    borderRadius: 12,
+    backgroundColor: "#6495ED",
   },
 });

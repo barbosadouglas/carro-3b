@@ -1,23 +1,34 @@
 import React from "react";
 
-import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Image,
+  Button,
+  TouchableOpacity,
+} from "react-native";
 
-export default function IconLogin() {
+interface IconLoginProps {
+  click: () => void;
+}
+export default function IconLogin({ click }: IconLoginProps) {
   return (
-    <View style={styles.container}>
-      <Image
-        source={require("../../../assets/images/login.png")}
-        style={{ width: 200, height: 200 }}
-      />
+    <View>
+      <TouchableOpacity onPress={click}>
+        <Image
+          source={require("../../../assets/images/login.png")}
+          style={styles.image}
+        />
+      </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
+  image: {
+    backgroundColor: "gray",
     alignItems: "center",
-    justifyContent: "center",
+
+    borderRadius: 96,
   },
 });
